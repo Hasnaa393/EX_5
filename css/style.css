@@ -1,0 +1,50 @@
+#Register form 
+{
+    background: #ada996;
+    background: -webkit-linear-gradient(to right,#eaeaea,#dbdbdb,#f2f2f2,#ada996);
+    background: linear-gradient(to right, #eaeaea, #dbdbdb, #f2f2f2, #ada996);
+    width: 500px;
+    position: relative;
+}
+
+
+#Register form h3 
+{
+    color: var(--main-color);
+    font-size: 24px;
+}
+#Register  form .fa-rotate-left 
+{
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    cursor: pointer;
+}
+
+#Search form 
+{
+    width: 350px;
+}
+         
+  #Data 
+  {
+    padding: 15px 10px;
+  }         
+ #Data .container
+ {
+    margin: auto;
+    position: relative;
+    height: 20vh;
+ }          
+ table.table 
+ {
+    width: max-content;
+    min-width: 100%;
+  
+ }
+ #TableAlert 
+ {
+    
+    width: 100%;
+    border-radius: 10px;
+ }
