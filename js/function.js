@@ -7,19 +7,14 @@ function getStudent(id) {
 
     student[key] = value;
   });
-
   return student;
 }
-
-
 function addStudent() {
   let focusInput = registerForm.querySelector("input:focus"),
     falseInput = registerForm.querySelector("input[data-valid='false']");
-
   focusInput?.blur();
 
   let invalidInput = registerForm.querySelector("input.is-invalid");
-
   if (invalidInput !== null || falseInput !== null) {
     return;
   }
@@ -33,10 +28,8 @@ function addStudent() {
   showStudent(student);
 
   isNoData(students);
-
   resetForm();
 }
-
 
 function showStudent(student) {
   tableBody.innerHTML += `
@@ -56,8 +49,6 @@ function showStudent(student) {
                 </tr>
     `;
 }
-
-
 function checkInput(input) {
   let inputName = input.name,
     inputValue = input.value,
@@ -67,65 +58,51 @@ function checkInput(input) {
     ),
     isInValid = !regexInputs[inputName].test(inputValue),
     errorMsg = "";
-
   if (isEmpty) {
     errorMsg = "this field is required.";
   } else if (isInValid) {
     errorMsg = "Invalid Field";
   }
-
   if (isEmpty || isInValid) {
-
+    //inCorrect
     input.classList.add("is-invalid");
     errorEle.classList.remove("d-none");
     input.classList.remove("is-valid");
     errorEle.textContent = errorMsg;
     input.dataset.valid = false;
-
   } else {
-
+    //Correct
     input.classList.remove("is-invalid");
     input.classList.add("is-valid");
     errorEle.classList.add("d-none");
     input.dataset.valid = true;
-
   }
+
+ 
 }
-
-
 function resetForm() {
   registerForm.reset();
 
   registerFormInputs.forEach(function (input) {
     input.classList.remove("is-valid");
     input.classList.remove("is-invalid");
-
     let errorEle = document.querySelector(
       `p.alert[data-error-name="${input.name}"]`
     );
-
     if(errorEle) errorEle.classList.add("d-none");
   });
 
   let formBtn = registerForm.querySelector("button");
-
   formBtn.textContent = "Add";
-
   formBtn.classList.remove("btn-info", "text-light");
-
   formBtn.classList.add("btn-success");
 
   registerForm.setAttribute("data-type", "add");
-
   cancelEditIcon.style.display="none";
 }
-
-
 function updateLocalStorage() {
   localStorage.setItem("students", JSON.stringify(students));
 }
-
-
 function showStudents(data) {
   tableBody.innerHTML = `
      <tr>
@@ -134,30 +111,22 @@ function showStudents(data) {
                 </td>
         </tr>
     `;
-
   data.forEach(function (student) {
     showStudent(student);
   });
 
   isNoData(data);
 }
-
-
 function getStudentIndex(id) {
   return students.findIndex((student) => student.id == id);
 }
-
-
 function deleteStudent(id, that) {
+  
 
-  if (registerForm.dataset.type === "edit") {
-    return;
-  }
-
+  
   if (!confirm("Are you sure?")) {
     return;
   }
-
   let studentIndex = getStudentIndex(id), 
     trEle = that.closest("tr");
 
@@ -169,18 +138,14 @@ function deleteStudent(id, that) {
 
   isNoData(students);
 }
-
-
 function isNoData(data) {
   let tableAlert = document.querySelector("#TableAlert");
-
   if (data.length == 0) {
     tableAlert.classList.remove("d-none");
   } else {
     tableAlert.classList.add("d-none");
   }
 }
-
 
 function insertEditStudentIntoForm(id) {
   resetForm();
@@ -195,18 +160,13 @@ function insertEditStudentIntoForm(id) {
   }
 
   formBtn.textContent = "Edit";
-
   formBtn.classList.add("btn-info", "text-light");
-
   formBtn.classList.remove("btn-success");
   
   registerForm.setAttribute("data-type", "edit");
-
   registerForm.setAttribute("data-student-id", id);
-
   cancelEditIcon.style.display="inline-block";
 }
-
 
 function editStudent() {
   let studentId = registerForm.dataset.studentId,
@@ -230,14 +190,11 @@ function editStudent() {
        
        
        `;
-
   students[studentIndex] = student;
-
   updateLocalStorage();
 
   resetForm();
 }
-
 
 function search(searchValue) {
   let filteredStudents = students.filter(function (student) {
@@ -249,10 +206,8 @@ function search(searchValue) {
       student.phone.toLowerCase().includes(searchValue.toLowerCase())
     );
   });
-
   showStudents(filteredStudents);
 }
-
 
 function cancelEditing()
 {
